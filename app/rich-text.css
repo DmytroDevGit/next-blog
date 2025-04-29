@@ -1,0 +1,65 @@
+@reference './globals.css';
+
+.blog-post {
+  h1,
+  .h1 {
+    @apply text-4xl font-bold my-4;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  h2,
+  .h2 {
+    @apply text-3xl font-bold my-4;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  h3,
+  .h3 {
+    @apply text-2xl font-bold my-4;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  h4,
+  .h4 {
+    @apply text-xl font-bold my-4;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  h5,
+  .h5 {
+    @apply text-lg font-bold my-4;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  h6,
+  .h6 {
+    @apply text-lg font-bold my-4;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  p {
+    @apply mb-2;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+}
