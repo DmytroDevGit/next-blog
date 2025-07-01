@@ -2,10 +2,10 @@ import PostCard from "@/app/components/PostCard";
 import { PostCardProps } from "@/types/PostCard";
 import Container from "@/app/components/Container";
 
+import { fetchData } from "@/utils/fetchData";
+
 export default async function Page() {
-  const data = await fetch(`${process.env.API_ENDPOINT}/blog-posts`)
-  const blogsObj = await data.json()
-  const blogs: PostCardProps[] = blogsObj.blogs
+  const blogs: PostCardProps[] = (await fetchData(`blog-posts`)).blogs;
   return (
     <Container>
       <ul className={'grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4'}>

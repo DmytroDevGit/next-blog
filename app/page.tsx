@@ -15,8 +15,7 @@ export default function Page() {
           </h2>
         </Container>
         <Image
-          layout={'fill'}
-          objectFit={'cover'}
+          fill={true}
           src={'/blog.jpg'}
           alt={''}
         />
@@ -29,8 +28,7 @@ export default function Page() {
           </h2>
         </Container>
         <Image
-          layout={'fill'}
-          objectFit={'cover'}
+          fill={true}
           src={'/gallery.jpg'}
           alt={''}
         />

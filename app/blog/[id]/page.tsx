@@ -7,22 +7,35 @@ import Container from "@/app/components/Container";
 // utils
 import { getReadingTime } from "@/utils/getReadingTime";
 import { dateConvertor } from "@/utils/dateConvertor";
+import { fetchData } from "@/utils/fetchData";
 
 // styles
 import '../../rich-text.css'
+
+type Blog = {
+  user_id: number,
+  title: string,
+  content_text: string,
+  photo_url: string,
+  created_at: string,
+  id: number,
+  description: string,
+  content_html: string,
+  category: string,
+  updated_at: string,
+}
+
 export default async function Page({
                                      params,
                                    }: {
   params: Promise<{ id: string }>
 }) {
   const id = (await params).id
-  const data = await fetch(`${process.env.API_ENDPOINT}/blog-posts/${id}`)
-  const postObj = await data.json()
-  const post = postObj.blog
+  const post: Blog = (await fetchData(`blog-posts/${id}`)).blog
 
   return (
     <Container>
-      <div className="blog-post bg-white">
+      <article className="blog-post bg-white">
         {post.photo_url && (
           <Image
             className={'w-full aspect-[16/9] object-center object-cover block'}
@@ -50,7 +63,7 @@ export default async function Page({
           </div>
           <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(post.content_html)}} />
         </div>
-      </div>
+      </article>
     </Container>
   )
 }

@@ -13,7 +13,7 @@ import { PhotoCard } from "@/types/PhotoCard";
 type Props = {
   photos: PhotoCard[],
   currentIndex: number,
-  onClose: (index: number) => void,
+  onCloseAction: (index: number) => void,
 }
 
 type Slide = {
@@ -26,7 +26,7 @@ export function AppLightbox(
   {
     photos,
     currentIndex,
-    onClose,
+    onCloseAction,
   }: Props
 ) {
   const [index, setIndex] = useState(currentIndex);
@@ -49,7 +49,7 @@ export function AppLightbox(
       index={index}
       close={() => {
         setIndex(-1)
-        onClose(-1)
+        onCloseAction(-1)
       }}
       plugins={[Slideshow]}
     />

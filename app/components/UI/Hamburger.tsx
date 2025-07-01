@@ -1,20 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useHamburger } from "@/app/hooks";
 
-type Props = {
-  className?: string;
-}
-
-export default function Hamburger({ ...props }: Props) {
+export default function Hamburger({ ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const { className } = props;
   const pathname = usePathname();
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  useEffect(() => {
-    setIsExpanded(false)
-  }, [pathname])
+  const [isExpanded, setIsExpanded] = useHamburger(pathname);
 
   return (
     <button

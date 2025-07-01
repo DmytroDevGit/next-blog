@@ -8,10 +8,13 @@ import { AppLightbox } from "@/app/components/Lightbox";
 import Button from "@/app/components/UI/Button";
 import Container from "@/app/components/Container";
 import Loader from "@/app/components/UI/Loader/Loader";
+import Transition from "@/app/components/Transition";
+
+// utils
+import { fetchData } from "@/utils/fetchData";
 
 // types
 import { PhotoCard } from "@/types/PhotoCard";
-import Transition from "@/app/components/Transition";
 
 export default function Page(){
   const [index, setIndex] = useState<number>(-1);
@@ -20,19 +23,16 @@ export default function Page(){
   const limit = 8;
 
   const loadPhotos = async (offset = 0, limit = 8)=> {
-    const data = await fetch(`${process.env.API_ENDPOINT}/photos?limit=${limit}&offset=${offset}`)
-    const photosObj =  await data.json()
-    setPhotos([...photos, ...photosObj.photos])
-  }
-
+    const newPhotos: PhotoCard[] = (await fetchData(`photos?limit=${limit}&offset=${offset}`)).photos;
+    setPhotos([...photos, ...newPhotos])
+  };
+  console.log('---1---');
   useEffect(() => {
     loadPhotos(offset, limit)
       .then(() => setOffset(offset + limit))
   }, []);
 
-  const onCloseHandler = (index: number) => {
-    setIndex(index);
-  }
+  const onCloseHandler = (index: number) => setIndex(index);
 
   const loadMoreClickHandler = () => {
     let scrollTimer: NodeJS.Timeout | number | null = null;
@@ -87,7 +87,7 @@ export default function Page(){
             Show more
           </Button>
         </div>
-        <AppLightbox photos={photos} currentIndex={index} onClose={onCloseHandler} />
+        <AppLightbox photos={photos} currentIndex={index} onCloseAction={onCloseHandler} />
       </Transition>
       :
       <Container className={`flex justify-center items-center p-10`}>

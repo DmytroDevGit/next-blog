@@ -6,7 +6,7 @@ import { PostCardProps } from "@/types/PostCard";
 
 export default function PostCard({...props}: PostCardProps): React.ReactNode {
   return (
-    <div className="blog-post-card bg-white h-full shadow">
+    <article className="blog-post-card bg-white h-full shadow">
       <Link
         className={'group'}
         href={`/blog/${props.id}`}
@@ -25,6 +25,6 @@ export default function PostCard({...props}: PostCardProps): React.ReactNode {
           <p className={'text-sm m-0'}>{props.description}</p>
         </div>
       </Link>
-    </div>
+    </article>
   )
 }
