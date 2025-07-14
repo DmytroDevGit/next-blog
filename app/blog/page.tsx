@@ -1,8 +1,12 @@
+// components
 import PostCard from "@/app/components/PostCard";
 import { PostCardProps } from "@/types/PostCard";
-import Container from "@/app/components/Container";
 
+// utils
 import { fetchData } from "@/utils/fetchData";
+
+// types
+import Container from "@/app/components/Container";
 
 export default async function Page() {
   const blogs: PostCardProps[] = (await fetchData(`blog-posts`)).blogs;

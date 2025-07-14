@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import {useState, useEffect, useCallback} from "react";
 import Image from "next/image";
 
 // components
@@ -16,21 +16,24 @@ import { fetchData } from "@/utils/fetchData";
 // types
 import { PhotoCard } from "@/types/PhotoCard";
 
+const limit = 8;
+
 export default function Page(){
   const [index, setIndex] = useState<number>(-1);
   const [offset, setOffset] = useState<number>(0);
   const [photos, setPhotos] = useState<PhotoCard[]>([]);
-  const limit = 8;
 
-  const loadPhotos = async (offset = 0, limit = 8)=> {
-    const newPhotos: PhotoCard[] = (await fetchData(`photos?limit=${limit}&offset=${offset}`)).photos;
-    setPhotos([...photos, ...newPhotos])
-  };
-  console.log('---1---');
+  const loadPhotos = useCallback(
+    async (offset: number, limit: number) => {
+      const newPhotos: PhotoCard[] = (await fetchData(`photos?limit=${limit}&offset=${offset}`)).photos;
+      setPhotos([...photos, ...newPhotos])
+    },
+  [photos])
+
   useEffect(() => {
     loadPhotos(offset, limit)
       .then(() => setOffset(offset + limit))
-  }, []);
+  }, [loadPhotos, offset]);
 
   const onCloseHandler = (index: number) => setIndex(index);
 
@@ -38,7 +41,7 @@ export default function Page(){
     let scrollTimer: NodeJS.Timeout | number | null = null;
 
     setOffset(offset + limit);
-    loadPhotos(offset)
+    loadPhotos(offset, limit)
       .then(() => {
         if (scrollTimer) clearTimeout(scrollTimer);
 

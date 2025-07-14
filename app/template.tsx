@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import { motion } from "framer-motion";
 
 export default function Template({ children }: { children: React.ReactNode }) {
@@ -9,7 +11,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       animate={{ y: 0, opacity: 1 }}
       transition={{ ease: "easeInOut", duration: 0.75 }}
     >
-      {children}
+      { children }
     </motion.div>
   );
 }

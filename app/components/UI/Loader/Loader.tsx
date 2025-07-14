@@ -1,4 +1,6 @@
 import { CSSProperties } from "react";
+
+// styles
 import styles from "./Loader.module.css";
 
 type Props = {

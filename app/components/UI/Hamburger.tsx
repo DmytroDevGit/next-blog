@@ -1,5 +1,8 @@
 "use client";
 
+import React from "react";
+
+// hooks
 import { usePathname } from "next/navigation";
 import { useHamburger } from "@/app/hooks";
 

@@ -4,7 +4,7 @@ export function useHamburger(pathname: string) {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsExpanded(false)
+    setIsExpanded(false);
   }, [pathname])
 
   return [isExpanded, setIsExpanded] as const;
