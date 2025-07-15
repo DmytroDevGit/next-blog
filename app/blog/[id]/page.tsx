@@ -25,6 +25,14 @@ type Blog = {
   updated_at: string,
 }
 
+export async function generateStaticParams() {
+  const posts = (await fetchData(`blog-posts`)).blogs;
+
+  return posts.map((post: Blog) => ({
+    id: `${post.id}`,
+  }))
+}
+
 export default async function Page({
                                      params,
                                    }: {
