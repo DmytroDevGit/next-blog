@@ -27,30 +27,30 @@ describe('Button Component', () => {
   it('Button primary variant', async () => {
     render(<Button variant={'primary'}>Click me</Button>);
     const button = screen.getByText('Click me');
-    expect(button.getAttribute('class')).toContain(classVariants.primary);
+    expect(button).toHaveClass(classVariants.primary);
   });
 
   it('Button secondary variant', async () => {
     render(<Button variant={'secondary'}>Click me</Button>);
     const button = screen.getByText('Click me');
-    expect(button.getAttribute('class')).toContain(classVariants.secondary);
+    expect(button).toHaveClass(classVariants.secondary);
   });
 
   it('Button success variant', async () => {
     render(<Button variant={'success'}>Click me</Button>);
     const button = screen.getByText('Click me');
-    expect(button.getAttribute('class')).toContain(classVariants.success);
+    expect(button).toHaveClass(classVariants.success);
   });
 
   it('Button warning variant', async () => {
     render(<Button variant={'warning'}>Click me</Button>);
     const button = screen.getByText('Click me');
-    expect(button.getAttribute('class')).toContain(classVariants.warning);
+    expect(button).toHaveClass(classVariants.warning);
   });
 
   it('Button default variant', async () => {
     render(<Button>Click me</Button>);
     const button = screen.getByText('Click me');
-    expect(button.getAttribute('class')).toContain(classVariants.default);
+    expect(button).toHaveClass(classVariants.default);
   });
 });
