@@ -5,7 +5,7 @@ import Image from "next/image";
 
 // components
 import { AppLightbox } from "@/app/components/Lightbox";
-import Button from "@/app/components/UI/Button";
+import Button from "@/app/components/UI/Button/Button";
 import Container from "@/app/components/Container";
 import Loader from "@/app/components/UI/Loader/Loader";
 import Transition from "@/app/components/Transition";

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { getReadingTime } from '../utils/getReadingTime';
+import { getReadingTime } from '@/utils/getReadingTime';
 import { shortText, longText } from './testData/getReadingTimeData';
 
 describe('getReadingTime', () => {

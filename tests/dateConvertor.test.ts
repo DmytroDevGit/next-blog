@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { dateConvertor } from '../utils/dateConvertor';
+import { dateConvertor } from '@/utils/dateConvertor';
 
 describe("dateConvertor", () => {
   test('dateConvertor should convert date with time string to format "MMM d, yyyy"', () => {
@@ -15,7 +15,7 @@ describe("dateConvertor", () => {
   });
 
   test('dateConvertor should return info message if no date string passed as argument', () => {
-    expect(dateConvertor()).toBe('No date provided');
+    expect(dateConvertor('')).toBe('No date provided');
   });
 })
 
