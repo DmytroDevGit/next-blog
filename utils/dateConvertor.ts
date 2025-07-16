@@ -1,5 +1,9 @@
 import { format } from 'date-fns'
 
 export function dateConvertor(str: string, output: string = 'MMM d, yyyy'): string {
-  return format(str, output)
+  if (str?.length) {
+    return format(str, output)
+  }
+
+  return 'No date provided'
 }
