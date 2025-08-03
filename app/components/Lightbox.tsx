@@ -40,12 +40,14 @@ export function AppLightbox(
     });
   })
 
-  useEffect(() => setIndex(currentIndex-1), [currentIndex])
+  useEffect(() => {
+    setIndex(currentIndex - 1)
+  }, [currentIndex])
 
   return (
     <Lightbox
       slides={slides}
-      open={index >= 0}
+      open={index > -1}
       index={index}
       close={() => {
         setIndex(-1)

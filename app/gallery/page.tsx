@@ -15,6 +15,7 @@ import { fetchData } from "@/utils/fetchData";
 
 // types
 import { PhotoCard } from "@/types/PhotoCard";
+import {log} from "next/dist/server/typescript/utils";
 
 const limit = 8;
 
@@ -23,17 +24,15 @@ export default function Page(){
   const [offset, setOffset] = useState<number>(0);
   const [photos, setPhotos] = useState<PhotoCard[]>([]);
 
-  const loadPhotos = useCallback(
-    async (offset: number, limit: number) => {
-      const newPhotos: PhotoCard[] = (await fetchData(`photos?limit=${limit}&offset=${offset}`)).photos;
-      setPhotos([...photos, ...newPhotos])
-    },
-  [photos])
+  const loadPhotos = async (offset: number, limit: number) => {
+    const newPhotos: PhotoCard[] = (await fetchData(`photos?limit=${limit}&offset=${offset}`)).photos;
+    setPhotos([...photos, ...newPhotos])
+  }
 
   useEffect(() => {
     loadPhotos(offset, limit)
       .then(() => setOffset(offset + limit))
-  }, [loadPhotos, offset]);
+  }, []);
 
   const onCloseHandler = (index: number) => setIndex(index);
 
